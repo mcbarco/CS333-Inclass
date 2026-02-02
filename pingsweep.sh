@@ -8,9 +8,9 @@ pingsweep() {
         curr="$base$q"
         # ping once with 1s wait, append output+errors to ping.log
         if ping -c 1 -W 1 "$curr" >> ping.log 2>&1; then
-            found+=("$curr")
+            found+=("$q")
         else
-            not_found+=("$curr")
+            not_found+=("$q")
         fi
     done
 
