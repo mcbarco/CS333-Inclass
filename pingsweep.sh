@@ -1,14 +1,8 @@
 #!/bin/bash
 # Ping sweep the Lab
 
-# NEW THINGS
-# - pingsweep in own function
-# - have a help function
-# - add a flag -p to run it
-
-base="onyxnode"
-
 pingsweep() {
+	base="onyxnode"
 	for q in {1..200}
 	do
 		curr="$base$q"
@@ -27,6 +21,12 @@ help() {
    echo
 }
 
+# If no arguments were provided, show help and exit
+if [ $# -eq 0 ]; then
+   help
+   exit 0
+fi
+
 # parse the command line options
 while getopts "hp" option; do
    case $option in
@@ -36,7 +36,7 @@ while getopts "hp" option; do
 	  p) # run pingsweep
 		 pingsweep
 		 ;;
-	 \?) # Invalid option
+	  *) # Invalid option
 		 echo "Error: Invalid option"
 		 help
 		 exit;;
